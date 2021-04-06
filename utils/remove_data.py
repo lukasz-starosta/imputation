@@ -1,18 +1,13 @@
 import csv
 import sys
 from random import randrange
+from utils.extract import extract
 
 filename = "../dataset/camera_dataset.csv"#sys.argv[1]
 percent_of_data_to_delete = 30 #int(sys.argv[2])
 output_filename = f"../dataset/output_missing_{percent_of_data_to_delete}.csv" #sys.argv[3]
 
-# Table headers
-headers = []
-
-# First column of the table
-names = []
-# All other columns of the table
-numeric_data = []
+names, headers, numeric_data = extract(filename)
 
 # Reading data from file and deleting some of it
 with open(filename) as csv_file:
