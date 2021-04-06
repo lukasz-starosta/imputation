@@ -1,7 +1,7 @@
 import pandas as pd
 
-def interpolate(filename):
+def m_interpolate(filename):
     df = pd.read_csv(filename)
-    df = df.interpolate(method='linear')
+    df = df.fillna(df.mean())    
     print(df.to_string())
-
+    

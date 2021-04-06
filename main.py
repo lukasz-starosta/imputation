@@ -2,10 +2,11 @@ import argparse
 import sys
 from methods.hot_deck import hot_deck
 from methods.interpolate import interpolate
+from methods.m_interpolate import m_interpolate
 
 
 parser = argparse.ArgumentParser(description='Imputation methods')
-choices = {'hotdeck':hot_deck, 'interpolate':interpolate}
+choices = {'hotdeck':hot_deck, 'interpolate':interpolate, 'minterpolate':m_interpolate}
 
 parser.add_argument('-m', '--method',
                     type=str,
