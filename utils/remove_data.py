@@ -2,9 +2,9 @@ import csv
 import sys
 from random import randrange
 
-filename = sys.argv[1]
-percent_of_data_to_delete = int(sys.argv[2])
-output_filename = sys.argv[3]
+filename = "../dataset/camera_dataset.csv"#sys.argv[1]
+percent_of_data_to_delete = 30 #int(sys.argv[2])
+output_filename = f"../dataset/output_missing_{percent_of_data_to_delete}.csv" #sys.argv[3]
 
 # Table headers
 headers = []
@@ -34,15 +34,15 @@ with open(filename) as csv_file:
 
     number_of_deleted_items = 0
     while number_of_deleted_items < number_of_items_to_delete:
-        random_column = randrange(0, column_length - 1)
-        random_row = randrange(0, row_length - 1)
+        random_column = randrange(0, column_length)
+        random_row = randrange(0, row_length)
 
         if numeric_data[random_column][random_row] is not None:
             numeric_data[random_column][random_row] = None
             number_of_deleted_items += 1
 
     # Writing data to new file
-    writer = csv.writer(open(output_filename, 'w'), delimiter=",")
+    writer = csv.writer(open(output_filename, 'w', newline=''), delimiter=",")
 
     writer.writerow(headers)
     for i in range(len(names)):
