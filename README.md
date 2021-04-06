@@ -1,16 +1,18 @@
 # imputation
 Various imputation methods in Python
 
-Łukasz:
+### Łukasz:
+- [ ] Metoda hot-deck
 
 
-Krzysztof:
+### Krzysztof:
 
 
-Mateusz:
+### Mateusz:
 - [ ] Interpolacja
-- [ ] Mean interpolation
+- [ ] Mean Imputation
+- [ ] Sprawdzanie jednej hipotezy
 
-Szymon:
+### Szymon:
 - [ ] MICE (Multivariate Imputation by Chained Equations)
 - [ ] podstawowe statystyki (średniej, odchylenia standardowego, mody, mediany i kwartyli),
