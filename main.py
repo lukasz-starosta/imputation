@@ -1,12 +1,15 @@
 import argparse
 import sys
 from methods.hot_deck import hot_deck
+from methods.interpolate import interpolate
+
 
 parser = argparse.ArgumentParser(description='Imputation methods')
+choices = {'hotdeck':hot_deck, 'interpolate':interpolate}
 
 parser.add_argument('-m', '--method',
                     type=str,
-                    help='The imputation method to use', choices=['hot-deck'], required=True)
+                    help='The imputation method to use', choices= choices.keys(), required=True)
 
 parser.add_argument('-f', '--filename',
                     type=str,
@@ -15,8 +18,8 @@ parser.add_argument('-f', '--filename',
 args = parser.parse_args()
 method = args.method
 
-if method == 'hot-deck':
-    hot_deck(args.filename)
+if method in choices:
+    choices[method](args.filename)
 else:
     print('Method not found.')
     sys.exit()
