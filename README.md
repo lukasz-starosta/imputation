@@ -9,7 +9,7 @@ Various imputation methods in Python
 
 
 ### Krzysztof:
-
+- [ ] Metoda imputacji wartościami uzyskanymi z krzywej regresji wyznaczonej na podstawie danych bez braków
 
 ### Mateusz:
 - [ ] Interpolacja
