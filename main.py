@@ -16,11 +16,11 @@ dataset_paths = ["dataset/camera_dataset.csv",
                  "dataset/output_missing_45.csv"]
 
 parser = argparse.ArgumentParser(description='Imputation methods')
-choices = {'hotdeck':hot_deck, 'interpolate':interpolate, 'mean': mean_imputation}
+choices = {'hotdeck': hot_deck, 'interpolate': interpolate, 'mean': mean_imputation}
 
 parser.add_argument('-m', '--method',
                     type=str,
-                    help='The imputation method to use', choices= choices.keys(), required=True)
+                    help='The imputation method to use', choices=choices.keys(), required=True)
 
 # parser.add_argument('-f', '--filename',
 #                     type=str,
@@ -50,4 +50,3 @@ if method in choices:
 else:
     print('Method not found.')
     sys.exit()
-
