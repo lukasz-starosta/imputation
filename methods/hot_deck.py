@@ -1,14 +1,14 @@
 from collections import Counter
 from math import sqrt
-from utils.extract import extract
 import pandas as pd
+from utils.extract import extract
 
 missing_indexes = []
 non_missing_rows = []
 non_missing_row_indexes = []
 k = 20
 
-# todo: low stats - possible error - to check
+
 def hot_deck(filename):
     headers, names, numeric_data = extract(filename)
     row_length = len(numeric_data)
@@ -70,4 +70,5 @@ def hot_deck(filename):
         data.append([names[i]] + numeric_data[i])
 
     df = pd.DataFrame(data, columns=headers)
+
     return df
