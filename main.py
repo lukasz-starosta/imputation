@@ -6,8 +6,9 @@ import argparse
 import sys
 from methods.hot_deck import hot_deck
 from methods.interpolate import interpolate
+from utils.hypothesis import check_mean_value_hypothesis
 
-MEAN_PRICE_HYPOTHESIS = 458
+attribute_mean_val_hypotheses = {"Price": 460, "Max resolution": 2475, "Zoom tele (T)":120}
 
 dataset_paths = ["dataset/camera_dataset.csv",
                  "dataset/output_missing_5.csv",
@@ -31,22 +32,24 @@ method = args.method
 
 if method in choices:
     for path in dataset_paths:
-        print(f"zbiór: {path}")
-
+        print(f"ZBIÓR: {path}")
+        print(f"PRZED IMPUTACJĄ")
         df = pd.read_csv(path)
 
-        _, p_val = stats.ttest_1samp(df["Price"], MEAN_PRICE_HYPOTHESIS, nan_policy="omit")
-        print(f"p-wartość dla hipotezy o średniej cenie wynoszącej {MEAN_PRICE_HYPOTHESIS} przed imputacją: {p_val}")
-        # todo: jeszcze 2 hipotezy
+        for attribute_name, mean_value_hypothesis in attribute_mean_val_hypotheses.items():
+            check_mean_value_hypothesis(df, attribute_name, mean_value_hypothesis)
         # todo: analiza średniej, odchylenia standardowegwo, mediany, mody, kwartyli
         # todo: analiza krzywej regresji
 
+        print(f"PO IMPUTACJI METODĄ {method}")
         # choices[method](args.filename)
         df = choices[method](path)
 
-        _, p_val = stats.ttest_1samp(df["Price"], MEAN_PRICE_HYPOTHESIS)
-        print(f"p-wartość dla hipotezy o średniej cenie  po imputacji: {p_val}")
-
+        for attribute_name, mean_value_hypothesis, in attribute_mean_val_hypotheses.items():
+            check_mean_value_hypothesis(df, attribute_name, mean_value_hypothesis)
+        # todo: analiza średniej, odchylenia standardowegwo, mediany, mody, kwartyli
+        # todo: analiza krzywej regresji
+        print("\n")
 else:
     print('Method not found.')
     sys.exit()
