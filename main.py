@@ -7,7 +7,7 @@ import sys
 from methods.hot_deck import hot_deck
 from methods.interpolate import interpolate
 from utils.hypothesis import check_mean_value_hypothesis
-
+from utils.basic_statistics import basic_statistics
 attribute_mean_val_hypotheses = {"Price": 460, "Max resolution": 2475, "Zoom tele (T)":120}
 
 dataset_paths = ["dataset/camera_dataset.csv",
@@ -38,8 +38,8 @@ if method in choices:
 
         for attribute_name, mean_value_hypothesis in attribute_mean_val_hypotheses.items():
             check_mean_value_hypothesis(df, attribute_name, mean_value_hypothesis)
-        # todo: analiza średniej, odchylenia standardowegwo, mediany, mody, kwartyli
-        # todo: analiza krzywej regresji
+            basic_statistics(df.dropna())
+            # todo: analiza krzywej regresji
 
         print(f"PO IMPUTACJI METODĄ {method}")
         # choices[method](args.filename)
@@ -47,8 +47,8 @@ if method in choices:
 
         for attribute_name, mean_value_hypothesis, in attribute_mean_val_hypotheses.items():
             check_mean_value_hypothesis(df, attribute_name, mean_value_hypothesis)
-        # todo: analiza średniej, odchylenia standardowegwo, mediany, mody, kwartyli
-        # todo: analiza krzywej regresji
+            basic_statistics(df)
+            # todo: analiza krzywej regresji
         print("\n")
 else:
     print('Method not found.')
