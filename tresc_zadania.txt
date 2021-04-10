@@ -1,0 +1,16 @@
+ Wybierz zbiór danych z występującymi brakami danych albo całkowicie losowo wygeneruj brakujące dane tak, aby w sumie brakowało około 5-10%. Dodatkowo wygeneruj braki na poziomie około 15%, 30% oraz 45%.
+
+Ważne! Należy wybrać zbiór danych, który umożliwi podstawową analizę statystyczną (analizę korelacji i regresji) oraz postawienie trzech hipotez badawczych. Braki powinny przede wszystkim dotyczyć atrybutów, które zostaną poddane dalszej analizie.
+2. Uzupełnij brakujące dane pięcioma metodami imputacji:
+
+    metodą "mean imputation",
+    metodą interpolacji,
+    metodą hot-deck,
+    wartościami uzyskanymi z krzywej regresji wyznaczonej na podstawie danych bez braków,
+    metodą MICE (Multivariate Imputation by Chained Equations).
+
+3. Przeanalizuj zbiór danych przed (z brakami i po usunięciu brakujących danych) oraz po imputacji pod kątem:
+
+    podstawowych statystyk (średniej, odchylenia standardowego, mody, mediany i kwartyli),
+    krzywej regresji (jej parametrów i wizualizacji),
+    testowania istotności statystycznej hipotez (różnic).
