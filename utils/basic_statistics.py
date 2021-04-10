@@ -20,7 +20,7 @@ def basic_statistics(df):
             try:
                 mode = round(mode[0])
             except KeyError:
-                print('This data frame lacks too many data!')
+                print('This data frame lacks too much data!')
 
             #-----------mediana------------
             md = df[column].median()
