@@ -35,5 +35,5 @@ def regression_fill(incomplete_filename):
             if pd.isna(incomplete_data.at[i, columnName]):
                 filled_data.at[i, columnName] = predicted_data[i]
                 #print(filled_data.at[i, columnName])
-
+    filled_data.dropna()
     return filled_data
