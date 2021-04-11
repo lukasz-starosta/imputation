@@ -20,7 +20,7 @@ dataset_paths = ["dataset/camera_dataset.csv",
                  "dataset/output_missing_45.csv"]
 
 parser = argparse.ArgumentParser(description='Imputation methods')
-choices = {'hotdeck': hot_deck, 'interpolate': interpolate, 'mean': mean_imputation,'mice': mice}
+choices = {'hotdeck': hot_deck, 'interpolate': interpolate, 'mean': mean_imputation, 'mice': mice}
 
 parser.add_argument('-m', '--method',
                     type=str,
@@ -39,10 +39,11 @@ if method in choices:
         print(f"PRZED IMPUTACJĄ")
         df = pd.read_csv(path)
 
+        dfnona = df.dropna()
         for attribute_name, mean_value_hypothesis in attribute_mean_val_hypotheses.items():
             check_mean_value_hypothesis(df, attribute_name, mean_value_hypothesis)
-            basic_statistics(df.dropna())
-            regression(df['Release date'], df.dropna(), attribute_name, title=f"Metoda: {method} - Przed imputacją, zbiór '{path}'")
+            basic_statistics(dfnona)
+            regression(dfnona['Release date'], dfnona, attribute_name, title=f"Metoda: {method} - Przed imputacją, zbiór '{path}'")
 
         print(f"PO IMPUTACJI METODĄ {method}")
         # choices[method](args.filename)
