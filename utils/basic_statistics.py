@@ -2,6 +2,7 @@ import pandas as pd
 import numpy as np
 from tabulate import tabulate
 
+
 condition = lambda column : (column != 'Model' and column != 'Release date')
 
 def basic_statistics(df):
@@ -20,7 +21,7 @@ def basic_statistics(df):
             try:
                 mode = round(mode[0])
             except KeyError:
-                print('This data frame lacks too much data!')
+                print('This data frame lacks too many data!')
 
             #-----------mediana------------
             md = df[column].median()
