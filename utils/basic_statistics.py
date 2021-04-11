@@ -16,6 +16,8 @@ def basic_statistics(df):
     qt1 = np.nan
     qt3 = np.nan
 
+    df.replace('', np.nan, inplace=True)
+    df.dropna(inplace=True)
     for column in df:
         if condition(column):
             try:
