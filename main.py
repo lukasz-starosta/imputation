@@ -10,6 +10,7 @@ from methods.mice import mice
 from utils.basic_statistics import basic_statistics
 from utils.hypothesis import check_mean_value_hypothesis
 from utils.regression import regression
+from methods.regression_fill import regression_fill
 
 attribute_mean_val_hypotheses = {"Price": 460, "Max resolution": 2475, "Zoom tele (T)": 120}
 
@@ -20,7 +21,8 @@ dataset_paths = ["dataset/camera_dataset.csv",
                  "dataset/output_missing_45.csv"]
 
 parser = argparse.ArgumentParser(description='Imputation methods')
-choices = {'hotdeck': hot_deck, 'interpolate': interpolate, 'mean': mean_imputation, 'mice': mice}
+choices = {'hotdeck': hot_deck, 'interpolate': interpolate, 'mean': mean_imputation, 'mice': mice,
+           'regression': regression_fill}
 
 parser.add_argument('-m', '--method',
                     type=str,
