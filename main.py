@@ -1,11 +1,11 @@
 import pandas as pd
 from scipy import stats
-from methods.interpolation import interpolation_imputation
+from methods.interpolate import interpolate
 from methods.mean import mean_imputation
 import argparse
 import sys
 from methods.hot_deck import hot_deck
-from methods.interpolate import interpolate
+from methods.mice import mice
 from utils.hypothesis import check_mean_value_hypothesis
 from utils.basic_statistics import basic_statistics
 attribute_mean_val_hypotheses = {"Price": 460, "Max resolution": 2475, "Zoom tele (T)":120}
@@ -17,7 +17,7 @@ dataset_paths = ["dataset/camera_dataset.csv",
                  "dataset/output_missing_45.csv"]
 
 parser = argparse.ArgumentParser(description='Imputation methods')
-choices = {'hotdeck': hot_deck, 'interpolate': interpolate, 'mean': mean_imputation}
+choices = {'hotdeck': hot_deck, 'interpolate': interpolate, 'mean': mean_imputation,'mice': mice}
 
 parser.add_argument('-m', '--method',
                     type=str,

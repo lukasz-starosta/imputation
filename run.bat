@@ -1,1 +1,1 @@
-python main.py -m mean
+python main.py -m mice
