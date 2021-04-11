@@ -1,14 +1,17 @@
-import pandas as pd
-from scipy import stats
-from methods.interpolate import interpolate
-from methods.mean import mean_imputation
 import argparse
 import sys
+
+import pandas as pd
+
 from methods.hot_deck import hot_deck
+from methods.interpolate import interpolate
+from methods.mean import mean_imputation
 from methods.mice import mice
-from utils.hypothesis import check_mean_value_hypothesis
 from utils.basic_statistics import basic_statistics
-attribute_mean_val_hypotheses = {"Price": 460, "Max resolution": 2475, "Zoom tele (T)":120}
+from utils.hypothesis import check_mean_value_hypothesis
+from utils.regression import regression
+
+attribute_mean_val_hypotheses = {"Price": 460, "Max resolution": 2475, "Zoom tele (T)": 120}
 
 dataset_paths = ["dataset/camera_dataset.csv",
                  "dataset/output_missing_5.csv",
@@ -39,7 +42,7 @@ if method in choices:
         for attribute_name, mean_value_hypothesis in attribute_mean_val_hypotheses.items():
             check_mean_value_hypothesis(df, attribute_name, mean_value_hypothesis)
             basic_statistics(df.dropna())
-            # todo: analiza krzywej regresji
+            regression(df['Release date'], df.dropna(), attribute_name, title=f"Metoda: {method} - Przed imputacją, zbiór '{path}'")
 
         print(f"PO IMPUTACJI METODĄ {method}")
         # choices[method](args.filename)
@@ -48,7 +51,7 @@ if method in choices:
         for attribute_name, mean_value_hypothesis, in attribute_mean_val_hypotheses.items():
             check_mean_value_hypothesis(df, attribute_name, mean_value_hypothesis)
             basic_statistics(df)
-            # todo: analiza krzywej regresji
+            regression(df['Release date'], df, attribute_name, title=f"Metoda: {method} - Po imputacji, zbiór '{path}'")
         print("\n")
 else:
     print('Method not found.')
