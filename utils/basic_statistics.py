@@ -16,33 +16,33 @@ def basic_statistics(df):
     qt1 = np.nan
     qt3 = np.nan
 
-    df.replace('', np.nan, inplace=True)
-    df.dropna(inplace=True)
+    # df.replace('', np.nan, inplace=True)
+    # df.dropna(inplace=True)
     for column in df:
         if condition(column):
             try:
                 #-----------srednia------------
-                mean = df[column].mean()
+                mean = df[column].dropna().mean()
                 mean = round(mean,2)
 
                 #----odchylenie standardowe----
-                std = df[column].std()
+                std = df[column].dropna().std()
                 std = round(std,2)
 
                 #-----------moda---------------
-                mode = df[column].mode()
+                mode = df[column].dropna().mode()
                 mode = round(mode[0])
 
                 #-----------mediana------------
-                md = df[column].median()
+                md = df[column].dropna().median()
                 md = round(md,2)
 
                 #-----------kwartyl 1------------
-                qt1 = np.percentile(df[column], 25)
+                qt1 = np.percentile(df[column].dropna(), 25)
                 qt1 = round(qt1,2)
 
                 #-----------kwartyl 3------------
-                qt3 = np.percentile(df[column], 75)
+                qt3 = np.percentile(df[column].dropna(), 75)
                 qt3 = round(qt3,2)
 
             except KeyError:

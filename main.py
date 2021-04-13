@@ -41,20 +41,27 @@ if method in choices:
         print(f"PRZED IMPUTACJĄ")
         df = pd.read_csv(path)
 
-        dfnona = df.dropna()
+        attributes_for_regression=["Max resolution", "Price"]
+        # dfnona = df.dropna()
+        basic_statistics(df)
         for attribute_name, mean_value_hypothesis in attribute_mean_val_hypotheses.items():
             check_mean_value_hypothesis(df, attribute_name, mean_value_hypothesis)
-            basic_statistics(dfnona)
-            regression(dfnona['Release date'], dfnona, attribute_name, title=f"Metoda: {method} - Przed imputacją, zbiór '{path}'")
-
+            # basic_statistics(dfnona)
+            # regression(dfnona['Release date'], dfnona, attribute_name, title=f"Metoda: {method} - Przed imputacją, zbiór '{path}'")
+        for at in attributes_for_regression:
+            dfnona = df[["Release date", at]].dropna()
+            regression(dfnona['Release date'], dfnona, at,
+                   title=f"Metoda: {method} - Przed imputacją, zbiór '{path}'")
         print(f"PO IMPUTACJI METODĄ {method}")
         # choices[method](args.filename)
         df = choices[method](path)
 
+        basic_statistics(df)
         for attribute_name, mean_value_hypothesis, in attribute_mean_val_hypotheses.items():
             check_mean_value_hypothesis(df, attribute_name, mean_value_hypothesis)
-            basic_statistics(df)
-            regression(df['Release date'], df, attribute_name, title=f"Metoda: {method} - Po imputacji, zbiór '{path}'")
+            # regression(df['Release date'], df, attribute_name, title=f"Metoda: {method} - Po imputacji, zbiór '{path}'")
+        for at in attributes_for_regression:
+            regression(df['Release date'], df, at, title=f"Metoda: {method} - Po imputacji, zbiór '{path}'")
         print("\n")
 else:
     print('Method not found.')
