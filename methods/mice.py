@@ -1,5 +1,3 @@
-import numpy as np
-import pandas as pd
 from fancyimpute import KNN, NuclearNormMinimization, SoftImpute, BiScaler, IterativeImputer
 import numpy as np
 import pandas as pd
