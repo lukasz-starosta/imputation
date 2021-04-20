@@ -14,9 +14,10 @@ def regression(X, data, attribute_name, title):
     linear_regression = LinearRegression()  # create object for the class
     linear_regression.fit(X, Y)  # perform linear regression
     Y_pred = linear_regression.predict(X)  # make predictions
-    print('Parametry regresji liniowej: ', linear_regression.coef_)
+    print('Parametry regresji liniowej: ', linear_regression.coef_, linear_regression.intercept_[0])
 
-    plt.title(f'{title}\nAtrybut: {attribute_name}\nWsp. regresji: {linear_regression.coef_[0][0]}')
+    plt.title(
+        f'{title}\nAtrybut: {attribute_name}\nWsp. regresji: {linear_regression.coef_[0][0]}\n Wyraz wolny: {linear_regression.intercept_[0]}')
     plt.scatter(X, Y)
     plt.xlabel('Release date')
     plt.ylabel(attribute_name)
